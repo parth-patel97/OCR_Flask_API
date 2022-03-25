@@ -1,3 +1,3 @@
-# OCR API 
+# OCR Flask API
 
-A Flask Restful api for the extract the text from the images using object character recognition.
+A Flask Restful api for the extract text from images using the Tesseract OCR.
