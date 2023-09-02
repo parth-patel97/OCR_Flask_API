@@ -14,20 +14,20 @@ APP_ROOT = os.path.dirname(os.path.abspath(__file__)) # path of the app
 
 # database connection
 
-# mydb = mysql.connector.connect(
-# 	host = "184.168.96.176",
-# 	user="doc_admin",
-#     port=3306,
-# 	password="Admin1234!#$",
-# 	database="docsender_db"
-# 	)
-# mydb =  mysql.connector.connect(
-# 	host = "localhost",
-# 	database='doc_sender',
-# 	user = "root",
-# 	password = ""
-# )
-# cursor = mydb.cursor()
+mydb = mysql.connector.connect(
+	host = "184.168.96.176",
+	user="doc_admin",
+    port=3306,
+	password="Admin1234!#$",
+	database="docsender_db"
+	)
+mydb =  mysql.connector.connect(
+	host = "localhost",
+	database='doc_sender',
+	user = "root",
+	password = ""
+)
+cursor = mydb.cursor()
 
 # simple get method 
 class Index(Resource):
@@ -271,12 +271,12 @@ class OCRInfo(Resource):
                 gst,amount,contact_no,email,date,invoice_no,name=data[0],data[1],data[2],data[3],data[4],data[5],data[6]
                 data={"user_id":user_id,"gst_no":gst,"Total_amnt":amount,"Contact_no":contact_no,"email_id":email,"date":date,"invoice_number":invoice_no,"name":name}
                 user_list.append(data)
-                # sql_query = "INSERT INTO doc_sender_user(user_id,filepath,filename,gst_no,total_amount,contact_no,email_id,date,invoice_number,doc_name) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)" # Insert values into database
-                # values= (user_id,destination,file_name,gst,amount,contact_no,email,date,invoice_no,name)
-                # cursor.execute(sql_query, values)
-                # mydb.commit()
-                # json_object=json.dumps(data)
-                # json_object = json.loads(json_object.replace("\'", '"'))
+                sql_query = "INSERT INTO doc_sender_user(user_id,filepath,filename,gst_no,total_amount,contact_no,email_id,date,invoice_number,doc_name) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)" # Insert values into database
+                values= (user_id,destination,file_name,gst,amount,contact_no,email,date,invoice_no,name)
+                cursor.execute(sql_query, values)
+                mydb.commit()
+                json_object=json.dumps(data)
+                json_object = json.loads(json_object.replace("\'", '"'))
             
             return user_list,200
         except:
